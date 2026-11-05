@@ -3,138 +3,199 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="A scroll-led collection of visual experiments by Vivek Joshi." />
-    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="description" content="A scroll-led collection of visual experiments by Vivek Joshi, video editor and visual storyteller." />
+    <meta name="theme-color" content="#161316" />
     <title>Experiments — Vivek Joshi</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=navbar-flow-20261105" />
     <link rel="stylesheet" href="experiments.css" />
+    <link rel="stylesheet" href="halftone-footer.css" />
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+    <script src="script.js?v=20261105-theme-switch" defer></script>
     <script src="experiments.js" defer></script>
+    <script src="halftone-footer.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#gallery">Skip to experiments</a>
-    <header class="topbar">
-      <a class="brand-mark" href="index.html" aria-label="Vivek Joshi, back to portfolio">VJ<span>.</span></a>
-      <div class="topbar-actions">
-        <div class="layout-toggle" role="group" aria-label="Gallery layout">
-          <button type="button" data-layout="list" aria-pressed="false">List</button>
-          <span aria-hidden="true">/</span>
-          <button type="button" data-layout="grid" aria-pressed="true">Grid</button>
-        </div>
-        <a class="talk-link" href="contact.html">Let’s talk <span aria-hidden="true">↗</span></a>
-      </div>
+    <div class="scroll-progress" aria-hidden="true"></div>
+    <header class="site-header experiments-header">
+      <a class="wordmark" href="index.html" aria-label="Vivek Joshi, home"><span>V</span></a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open full-screen menu">
+          <span class="menu-grid-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span class="menu-toggle-label" aria-hidden="true">Menu</span>
+        </button>
+        <a href="work.html">Work</a>
+        <a href="experiments.html" aria-current="page">Experiments</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a class="nav-contact" href="contact.html" data-magnetic>Contact <span aria-hidden="true">↗</span></a>
+      </nav>
+      <button class="theme-switch" type="button" aria-label="Switch to the next color theme" data-magnetic>
+        <span class="theme-switch-swatch" aria-hidden="true"></span>
+        <span class="theme-switch-label">THEME</span>
+        <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M16.5 8A6.7 6.7 0 0 0 4.3 5.3L2.8 7M3 3.4v3.8h3.8M3.5 12A6.7 6.7 0 0 0 15.7 14.7l1.5-1.7M17 16.6v-3.8h-3.8" /></svg>
+      </button>
     </header>
 
-    <main>
-      <section class="intro">
-        <p class="eyebrow"><span></span> VIVEK JOSHI · VISUAL EXPERIMENTS</p>
-        <h1>MADE TO<br /><span>MOVE.</span></h1>
-        <p class="intro-note">A collection of frames, forms, and feelings.<br />Scroll through and find your own way in.</p>
+    <dialog class="menu-dialog" id="site-menu" aria-label="Full-screen navigation">
+      <div class="menu-dialog-inner">
+        <div class="menu-dialog-top">
+          <span>VIVEK JOSHI <i>·</i> DEHRADUN, INDIA</span>
+          <button class="menu-close" type="button" aria-label="Close menu"><span></span><span></span></button>
+        </div>
+        <nav class="menu-dialog-links" aria-label="Explore the portfolio">
+          <a href="work.html"><span>01</span>Selected work<span aria-hidden="true">↗</span></a>
+          <a href="experiments.html" aria-current="page"><span>02</span>Experiments<span aria-hidden="true">↗</span></a>
+          <a href="about.html"><span>03</span>About me<span aria-hidden="true">↗</span></a>
+          <a href="services.html"><span>04</span>What I do<span aria-hidden="true">↗</span></a>
+          <a href="contact.html"><span>05</span>Say hello<span aria-hidden="true">↗</span></a>
+        </nav>
+        <div class="menu-dialog-bottom">
+          <span>DESIGN · EDIT · MOTION</span>
+          <a href="mailto:vivekjoshi20jan2005@gmail.com">VIVEKJOSHI20JAN2005@GMAIL.COM ↗</a>
+        </div>
+      </div>
+    </dialog>
+
+    <main id="main" class="experiments-page">
+      <section class="experiments-intro" aria-labelledby="experiments-title">
+        <p class="eyebrow"><span class="status-dot"></span> VIVEK JOSHI · VISUAL EXPERIMENTS</p>
+        <h1 id="experiments-title">MADE TO<br /><span>MOVE.</span></h1>
+        <div class="experiments-intro-bottom">
+          <p>A collection of frames, forms, and feelings.<br />Scroll through and find your own way in.</p>
+          <a href="#gallery" aria-label="Scroll to visual experiments" data-magnetic>SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a>
+        </div>
         <span class="intro-index" aria-hidden="true">01—12</span>
       </section>
 
-      <aside class="scroll-meter" aria-label="Page reading progress">
-        <span class="scroll-meter-line"><i></i></span>
-        <span class="scroll-meter-value" aria-live="off">00</span>
-      </aside>
+      <section class="experiments-work" aria-labelledby="gallery-title">
+        <div class="experiments-heading">
+          <div>
+            <p class="eyebrow">A few frames outside the final cut</p>
+            <h2 id="gallery-title">VISUAL<br /><span>STUDIES.</span></h2>
+          </div>
+          <div class="experiments-heading-controls">
+            <p>TWELVE MOMENTS · ONE MOVING CANVAS</p>
+            <div class="layout-toggle" role="group" aria-label="Gallery layout">
+              <button type="button" data-layout="list" aria-pressed="false" data-magnetic>List</button>
+              <span aria-hidden="true">/</span>
+              <button type="button" data-layout="grid" aria-pressed="true" data-magnetic>Grid</button>
+            </div>
+          </div>
+        </div>
 
-      <section class="gallery gallery--grid" id="gallery" aria-label="Visual experiments">
-        <article class="gallery-item scene-01" data-gallery-item>
-          <div class="gallery-visual">
-            <div class="gallery-artwork"><span class="art-shape"></span><span class="art-shape art-shape-small"></span><span class="art-grain"></span></div>
-            <span class="visual-index">01</span><span class="visual-corner" aria-hidden="true">VJ—01</span>
-          </div>
-          <div class="item-meta"><div class="item-title"><span>AFTER</span><span>THE GLOW</span></div><div class="item-tag"><span>COLOUR / LIGHT</span><span>01 — 12</span></div></div>
-        </article>
-        <article class="gallery-item scene-02" data-gallery-item>
-          <div class="gallery-visual">
-            <div class="gallery-artwork"><span class="art-shape"></span><span class="art-shape art-shape-small"></span><span class="art-grain"></span></div>
-            <span class="visual-index">02</span><span class="visual-corner" aria-hidden="true">VJ—02</span>
-          </div>
-          <div class="item-meta"><div class="item-title"><span>SOFT</span><span>FOCUS</span></div><div class="item-tag"><span>OPTICS / FORM</span><span>02 — 12</span></div></div>
-        </article>
-        <article class="gallery-item scene-03" data-gallery-item>
-          <div class="gallery-visual">
-            <div class="gallery-artwork"><span class="art-shape"></span><span class="art-shape art-shape-small"></span><span class="art-grain"></span></div>
-            <span class="visual-index">03</span><span class="visual-corner" aria-hidden="true">VJ—03</span>
-          </div>
-          <div class="item-meta"><div class="item-title"><span>NEW</span><span>HORIZONS</span></div><div class="item-tag"><span>LANDSCAPE / STUDY</span><span>03 — 12</span></div></div>
-        </article>
-        <article class="gallery-item scene-04" data-gallery-item>
-          <div class="gallery-visual">
-            <div class="gallery-artwork"><span class="art-shape"></span><span class="art-shape art-shape-small"></span><span class="art-grain"></span></div>
-            <span class="visual-index">04</span><span class="visual-corner" aria-hidden="true">VJ—04</span>
-          </div>
-          <div class="item-meta"><div class="item-title"><span>STILL</span><span>IN MOTION</span></div><div class="item-tag"><span>RHYTHM / MOTION</span><span>04 — 12</span></div></div>
-        </article>
-        <article class="gallery-item scene-05" data-gallery-item>
-          <div class="gallery-visual">
-            <div class="gallery-artwork"><span class="art-shape"></span><span class="art-shape art-shape-small"></span><span class="art-grain"></span></div>
-            <span class="visual-index">05</span><span class="visual-corner" aria-hidden="true">VJ—05</span>
-          </div>
-          <div class="item-meta"><div class="item-title"><span>BETWEEN</span><span>FRAMES</span></div><div class="item-tag"><span>EDIT / PROCESS</span><span>05 — 12</span></div></div>
-        </article>
-        <article class="gallery-item scene-06" data-gallery-item>
-          <div class="gallery-visual">
-            <div class="gallery-artwork"><span class="art-shape"></span><span class="art-shape art-shape-small"></span><span class="art-grain"></span></div>
-            <span class="visual-index">06</span><span class="visual-corner" aria-hidden="true">VJ—06</span>
-          </div>
-          <div class="item-meta"><div class="item-title"><span>WARM</span><span>STATIC</span></div><div class="item-tag"><span>TEXTURE / TONE</span><span>06 — 12</span></div></div>
-        </article>
-        <article class="gallery-item scene-07" data-gallery-item>
-          <div class="gallery-visual">
-            <div class="gallery-artwork"><span class="art-shape"></span><span class="art-shape art-shape-small"></span><span class="art-grain"></span></div>
-            <span class="visual-index">07</span><span class="visual-corner" aria-hidden="true">VJ—07</span>
-          </div>
-          <div class="item-meta"><div class="item-title"><span>QUIET</span><span>COLOUR</span></div><div class="item-tag"><span>PALETTE / STUDY</span><span>07 — 12</span></div></div>
-        </article>
-        <article class="gallery-item scene-08" data-gallery-item>
-          <div class="gallery-visual">
-            <div class="gallery-artwork"><span class="art-shape"></span><span class="art-shape art-shape-small"></span><span class="art-grain"></span></div>
-            <span class="visual-index">08</span><span class="visual-corner" aria-hidden="true">VJ—08</span>
-          </div>
-          <div class="item-meta"><div class="item-title"><span>OPEN</span><span>COUNTRY</span></div><div class="item-tag"><span>SPACE / SCALE</span><span>08 — 12</span></div></div>
-        </article>
-        <article class="gallery-item scene-09" data-gallery-item>
-          <div class="gallery-visual">
-            <div class="gallery-artwork"><span class="art-shape"></span><span class="art-shape art-shape-small"></span><span class="art-grain"></span></div>
-            <span class="visual-index">09</span><span class="visual-corner" aria-hidden="true">VJ—09</span>
-          </div>
-          <div class="item-meta"><div class="item-title"><span>SMALL</span><span>WONDERS</span></div><div class="item-tag"><span>DETAIL / LIFE</span><span>09 — 12</span></div></div>
-        </article>
-        <article class="gallery-item scene-10" data-gallery-item>
-          <div class="gallery-visual">
-            <div class="gallery-artwork"><span class="art-shape"></span><span class="art-shape art-shape-small"></span><span class="art-grain"></span></div>
-            <span class="visual-index">10</span><span class="visual-corner" aria-hidden="true">VJ—10</span>
-          </div>
-          <div class="item-meta"><div class="item-title"><span>GOLDEN</span><span>HOUR</span></div><div class="item-tag"><span>LIGHT / DIRECTION</span><span>10 — 12</span></div></div>
-        </article>
-        <article class="gallery-item scene-11" data-gallery-item>
-          <div class="gallery-visual">
-            <div class="gallery-artwork"><span class="art-shape"></span><span class="art-shape art-shape-small"></span><span class="art-grain"></span></div>
-            <span class="visual-index">11</span><span class="visual-corner" aria-hidden="true">VJ—11</span>
-          </div>
-          <div class="item-meta"><div class="item-title"><span>AFTER</span><span>IMAGE</span></div><div class="item-tag"><span>MEMORY / MOTION</span><span>11 — 12</span></div></div>
-        </article>
-        <article class="gallery-item scene-12" data-gallery-item>
-          <div class="gallery-visual">
-            <div class="gallery-artwork"><span class="art-shape"></span><span class="art-shape art-shape-small"></span><span class="art-grain"></span></div>
-            <span class="visual-index">12</span><span class="visual-corner" aria-hidden="true">VJ—12</span>
-          </div>
-          <div class="item-meta"><div class="item-title"><span>THE</span><span>LAST CUT</span></div><div class="item-tag"><span>STORY / ENDINGS</span><span>12 — 12</span></div></div>
-        </article>
+        <aside class="scroll-meter" aria-label="Page reading progress">
+          <span class="scroll-meter-line"><i></i></span>
+          <span class="scroll-meter-value" aria-live="off">00</span>
+        </aside>
+
+        <div class="gallery gallery--grid" id="gallery" aria-label="Visual experiments">
+          <article class="gallery-item" data-gallery-item>
+            <div class="gallery-visual">
+              <div class="gallery-media"><img src="assets/frames-on-set.jpg" alt="A quiet moment between takes on a film set" loading="lazy" decoding="async" /></div>
+              <span class="visual-index">01</span><span class="visual-corner" aria-hidden="true">VJ—01</span>
+            </div>
+            <div class="item-meta"><h3 class="item-title" data-reveal><span><span class="item-title-line">BETWEEN</span></span><span><span class="item-title-line">TAKES</span></span></h3><div class="item-tag"><span>SET LIFE / DOCUMENTARY</span><span>01 — 12</span></div></div>
+          </article>
+          <article class="gallery-item" data-gallery-item>
+            <div class="gallery-visual">
+              <div class="gallery-media"><video muted loop playsinline preload="none" data-preview-video data-src="assets/work/kia-seltos-launch.mp4" data-poster="assets/frames-light-study.jpg" aria-label="Kia Seltos launch film preview"></video></div>
+              <span class="visual-index">02</span><span class="visual-corner" aria-hidden="true">VJ—02</span>
+            </div>
+            <div class="item-meta"><h3 class="item-title" data-reveal><span><span class="item-title-line">SOFT</span></span><span><span class="item-title-line">FOCUS</span></span></h3><div class="item-tag"><span>OPTICS / FORM</span><span>02 — 12</span></div></div>
+          </article>
+          <article class="gallery-item" data-gallery-item>
+            <div class="gallery-visual">
+              <div class="gallery-media"><img src="assets/frames-dehradun-skyline.jpg" alt="Dehradun rooftops beneath the surrounding mountains" loading="lazy" decoding="async" /></div>
+              <span class="visual-index">03</span><span class="visual-corner" aria-hidden="true">VJ—03</span>
+            </div>
+            <div class="item-meta"><h3 class="item-title" data-reveal><span><span class="item-title-line">HOME IN</span></span><span><span class="item-title-line">THE HILLS</span></span></h3><div class="item-tag"><span>LANDSCAPE / STUDY</span><span>03 — 12</span></div></div>
+          </article>
+          <article class="gallery-item" data-gallery-item>
+            <div class="gallery-visual">
+              <div class="gallery-media"><video muted loop playsinline preload="none" data-preview-video data-src="assets/work/ai-visual.mp4" data-poster="assets/frames-costume-study.jpg" aria-label="AI visual edit preview"></video></div>
+              <span class="visual-index">04</span><span class="visual-corner" aria-hidden="true">VJ—04</span>
+            </div>
+            <div class="item-meta"><h3 class="item-title" data-reveal><span><span class="item-title-line">STILL IN</span></span><span><span class="item-title-line">MOTION</span></span></h3><div class="item-tag"><span>RHYTHM / MOTION</span><span>04 — 12</span></div></div>
+          </article>
+          <article class="gallery-item" data-gallery-item>
+            <div class="gallery-visual">
+              <div class="gallery-media"><img src="assets/frames-costume-study.jpg" alt="Costume and wardrobe details prepared for a scene" loading="lazy" decoding="async" /></div>
+              <span class="visual-index">05</span><span class="visual-corner" aria-hidden="true">VJ—05</span>
+            </div>
+            <div class="item-meta"><h3 class="item-title" data-reveal><span><span class="item-title-line">BETWEEN</span></span><span><span class="item-title-line">FRAMES</span></span></h3><div class="item-tag"><span>EDIT / PROCESS</span><span>05 — 12</span></div></div>
+          </article>
+          <article class="gallery-item" data-gallery-item>
+            <div class="gallery-visual">
+              <div class="gallery-media"><video muted loop playsinline preload="none" data-preview-video data-src="assets/work/tata-ai-edit.mp4" data-poster="assets/frames-sunset-tracks.jpg" aria-label="Tata AI film preview"></video></div>
+              <span class="visual-index">06</span><span class="visual-corner" aria-hidden="true">VJ—06</span>
+            </div>
+            <div class="item-meta"><h3 class="item-title" data-reveal><span><span class="item-title-line">WARM</span></span><span><span class="item-title-line">STATIC</span></span></h3><div class="item-tag"><span>TEXTURE / TONE</span><span>06 — 12</span></div></div>
+          </article>
+          <article class="gallery-item" data-gallery-item>
+            <div class="gallery-visual">
+              <div class="gallery-media"><img src="assets/frames-documentary-farmer.jpg" alt="A farmer pauses in a field during a documentary shoot" loading="lazy" decoding="async" /></div>
+              <span class="visual-index">07</span><span class="visual-corner" aria-hidden="true">VJ—07</span>
+            </div>
+            <div class="item-meta"><h3 class="item-title" data-reveal><span><span class="item-title-line">FIELD</span></span><span><span class="item-title-line">NOTES</span></span></h3><div class="item-tag"><span>PEOPLE / PLACE</span><span>07 — 12</span></div></div>
+          </article>
+          <article class="gallery-item" data-gallery-item>
+            <div class="gallery-visual">
+              <div class="gallery-media"><video muted loop playsinline preload="none" data-preview-video data-src="assets/work/air-india-edit.mp4" data-poster="assets/frames-rural-portrait.jpg" aria-label="Air India edit preview"></video></div>
+              <span class="visual-index">08</span><span class="visual-corner" aria-hidden="true">VJ—08</span>
+            </div>
+            <div class="item-meta"><h3 class="item-title" data-reveal><span><span class="item-title-line">OPEN</span></span><span><span class="item-title-line">COUNTRY</span></span></h3><div class="item-tag"><span>SPACE / SCALE</span><span>08 — 12</span></div></div>
+          </article>
+          <article class="gallery-item" data-gallery-item>
+            <div class="gallery-visual">
+              <div class="gallery-media"><img src="assets/frames-peacock.jpg" alt="Peacock feathers catching the late afternoon light" loading="lazy" decoding="async" /></div>
+              <span class="visual-index">09</span><span class="visual-corner" aria-hidden="true">VJ—09</span>
+            </div>
+            <div class="item-meta"><h3 class="item-title" data-reveal><span><span class="item-title-line">SMALL</span></span><span><span class="item-title-line">WONDERS</span></span></h3><div class="item-tag"><span>DETAIL / LIFE</span><span>09 — 12</span></div></div>
+          </article>
+          <article class="gallery-item" data-gallery-item>
+            <div class="gallery-visual">
+              <div class="gallery-media"><video muted loop playsinline preload="none" data-preview-video data-src="assets/work/velonna-jewellery/showreel.mp4" data-poster="assets/frames-monitor-on-set.jpg" aria-label="Velonna Jewellery showreel preview"></video></div>
+              <span class="visual-index">10</span><span class="visual-corner" aria-hidden="true">VJ—10</span>
+            </div>
+            <div class="item-meta"><h3 class="item-title" data-reveal><span><span class="item-title-line">GOLDEN</span></span><span><span class="item-title-line">HOUR</span></span></h3><div class="item-tag"><span>LIGHT / DIRECTION</span><span>10 — 12</span></div></div>
+          </article>
+          <article class="gallery-item" data-gallery-item>
+            <div class="gallery-visual">
+              <div class="gallery-media"><img src="assets/frames-pigeons.jpg" alt="Pigeons lifting into the sky above the city" loading="lazy" decoding="async" /></div>
+              <span class="visual-index">11</span><span class="visual-corner" aria-hidden="true">VJ—11</span>
+            </div>
+            <div class="item-meta"><h3 class="item-title" data-reveal><span><span class="item-title-line">AFTER</span></span><span><span class="item-title-line">IMAGE</span></span></h3><div class="item-tag"><span>MEMORY / MOTION</span><span>11 — 12</span></div></div>
+          </article>
+          <article class="gallery-item" data-gallery-item>
+            <div class="gallery-visual">
+              <div class="gallery-media"><video muted loop playsinline preload="none" data-preview-video data-src="assets/work/ltpct-edit.mp4" data-poster="assets/frames-sunset-tracks.jpg" aria-label="LTPCT edit preview"></video></div>
+              <span class="visual-index">12</span><span class="visual-corner" aria-hidden="true">VJ—12</span>
+            </div>
+            <div class="item-meta"><h3 class="item-title" data-reveal><span><span class="item-title-line">THE LAST</span></span><span><span class="item-title-line">CUT</span></span></h3><div class="item-tag"><span>STORY / ENDINGS</span><span>12 — 12</span></div></div>
+          </article>
+        </div>
       </section>
 
-      <footer class="page-footer">
-        <p class="eyebrow"><span></span> THAT’S A WRAP</p>
-        <a class="footer-title" href="contact.html">HAVE A<br /><span>GOOD ONE.</span><b aria-hidden="true">↗</b></a>
-        <div class="footer-bottom"><a href="index.html">BACK TO PORTFOLIO <span aria-hidden="true">↗</span></a><span>© <span id="year"></span> VIVEK JOSHI · MADE WITH INTENTION</span></div>
-      </footer>
+      <section class="experiments-cta section-wrap">
+        <p class="eyebrow"><span class="status-dot"></span> THAT’S A WRAP</p>
+        <a href="contact.html" data-magnetic>HAVE A<br /><span>GOOD ONE.</span><b aria-hidden="true">↗</b></a>
+      </section>
     </main>
+
+    <footer class="site-footer section-wrap">
+      <a class="wordmark" href="index.html" aria-label="Back to home"><span>V</span></a>
+      <p>Made with intention, frame by frame.</p>
+      <div class="footer-links">
+        <a href="work.html">Work</a><a href="experiments.html" aria-current="page">Experiments</a><a href="about.html">About</a><a href="services.html">Services</a><a href="contact.html">Contact ↗</a>
+        <span>© <span id="year"></span> Vivek Joshi</span>
+      </div>
+    </footer>
   </body>
 </html>

@@ -1,11 +1,13 @@
 const menuToggle = document.querySelector(".menu-toggle");
 const menuDialog = document.querySelector("#site-menu");
+const portfolioNavs = [...document.querySelectorAll(".site-header .site-nav")];
 const reelDialog = document.querySelector(".reel-dialog");
 const reelTitle = document.querySelector("#reel-title");
 const reelVideo = reelDialog?.querySelector("video");
 const introLoader = document.querySelector("#intro-loader");
 const scrollProgress = document.querySelector(".scroll-progress");
 const scrollStory = document.querySelector("[data-scroll-story]");
+const homeStoryHeader = document.querySelector(".home-story-header");
 const storyOpening = scrollStory?.querySelector("[data-story-opening]");
 const storyOpeningVideo = storyOpening?.querySelector("video");
 const storyDepth = scrollStory?.querySelector("[data-story-depth]");
@@ -21,6 +23,44 @@ const pointerLight = document.createElement("div");
 pointerLight.className = "pointer-light";
 pointerLight.setAttribute("aria-hidden", "true");
 document.body.append(pointerLight);
+
+const positionNavLens = (nav, link) => {
+  if (!link) {
+    nav.classList.remove("has-nav-lens");
+    return;
+  }
+  const navBounds = nav.getBoundingClientRect();
+  const linkBounds = link.getBoundingClientRect();
+  nav.style.setProperty("--nav-lens-x", `${linkBounds.left - navBounds.left}px`);
+  nav.style.setProperty("--nav-lens-width", `${linkBounds.width}px`);
+  nav.classList.add("has-nav-lens");
+};
+
+portfolioNavs.forEach((nav) => {
+  const navItems = [...nav.querySelectorAll("a, .menu-toggle")];
+  const currentLink = nav.querySelector('a[aria-current="page"]');
+  const resetLens = () => positionNavLens(nav, currentLink);
+
+  positionNavLens(nav, currentLink);
+  navItems.forEach((item) => {
+    item.addEventListener("pointerenter", () => positionNavLens(nav, item));
+    item.addEventListener("focus", () => positionNavLens(nav, item));
+  });
+  nav.addEventListener("pointerleave", resetLens);
+  nav.addEventListener("focusout", (event) => {
+    if (!nav.contains(event.relatedTarget)) resetLens();
+  });
+  if ("ResizeObserver" in window) {
+    new ResizeObserver(resetLens).observe(nav);
+  }
+});
+
+window.addEventListener("resize", () => {
+  portfolioNavs.forEach((nav) => positionNavLens(nav, nav.querySelector('a[aria-current="page"]')));
+}, { passive: true });
+document.fonts?.ready.then(() => {
+  portfolioNavs.forEach((nav) => positionNavLens(nav, nav.querySelector('a[aria-current="page"]')));
+});
 
 const canUsePointerEffects = () => finePointer.matches && !prefersReducedMotion.matches && themePreferences.effects.motion;
 
@@ -400,6 +440,15 @@ const updateScrollStory = () => {
   previousStoryScrollY = window.scrollY;
   previousStoryFrameTime = now;
   document.body.classList.toggle("story-entered", progress > 0.01);
+  const reducedStoryMotion = prefersReducedMotion.matches || !themePreferences.effects.motion;
+  const showHomeNav = reducedStoryMotion
+    ? window.scrollY >= storyStart + scrollStory.offsetHeight
+    : progress >= 0.98;
+  document.body.classList.toggle("story-nav-visible", showHomeNav);
+  if (homeStoryHeader) {
+    homeStoryHeader.inert = !showHomeNav;
+    homeStoryHeader.toggleAttribute("aria-hidden", !showHomeNav);
+  }
   updateStoryScrollCue();
   if (!storyOpening) return;
   if (prefersReducedMotion.matches || !themePreferences.effects.motion) {

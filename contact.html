@@ -9,15 +9,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=20261105-theme-switch" />
+    <link rel="stylesheet" href="styles.css?v=navbar-flow-20261105" />
+    <link rel="stylesheet" href="halftone-footer.css" />
     <script src="script.js?v=20261105-theme-switch" defer></script>
+    <script src="contact.js" defer></script>
+    <script src="halftone-footer.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a><div class="scroll-progress" aria-hidden="true"></div>
     <header class="site-header">
       <a class="wordmark" href="index.html" aria-label="Vivek Joshi, home"><span>V</span></a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open full-screen menu"><span class="menu-grid-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="menu-toggle-label" aria-hidden="true">Menu</span></button>
-      <nav class="site-nav" aria-label="Main navigation"><a href="work.html">Work</a><a href="about.html">About</a><a href="services.html">Services</a><a class="nav-contact" href="contact.html" aria-current="page">Contact <span aria-hidden="true">↗</span></a></nav>
+      <nav class="site-nav" aria-label="Main navigation"><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open full-screen menu"><span class="menu-grid-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="menu-toggle-label" aria-hidden="true">Menu</span></button><a href="work.html">Work</a><a href="about.html">About</a><a href="services.html">Services</a><a class="nav-contact" href="contact.html" aria-current="page">Contact <span aria-hidden="true">↗</span></a></nav>
       <button class="theme-switch" type="button" aria-label="Switch to the next color theme"><span class="theme-switch-swatch" aria-hidden="true"></span><span class="theme-switch-label">THEME</span><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M16.5 8A6.7 6.7 0 0 0 4.3 5.3L2.8 7M3 3.4v3.8h3.8M3.5 12A6.7 6.7 0 0 0 15.7 14.7l1.5-1.7M17 16.6v-3.8h-3.8" /></svg></button>
     </header>
     <dialog class="menu-dialog" id="site-menu" aria-label="Full-screen navigation">
@@ -34,12 +36,76 @@
       </section>
       <section class="contact contact-page section-pad">
         <div class="contact-inner section-wrap" data-reveal>
-          <p class="eyebrow"><span class="status-dot"></span> Available for select projects</p>
-          <h2>GOOD STORIES<br />START WITH<br /><span>HELLO.</span></h2>
-          <a class="button button-primary contact-button" href="mailto:vivekjoshi20jan2005@gmail.com">EMAIL VIVEK <span aria-hidden="true">↗</span></a>
-          <div class="contact-details">
-            <a class="contact-phone" href="tel:+919389877893">CALL <span>+91 93898 77893</span></a>
-            <p class="contact-small">DEHRADUN, UTTARAKHAND · INDIA</p>
+          <div class="contact-copy">
+            <p class="eyebrow"><span class="status-dot"></span> Available for select projects</p>
+            <h2>GOOD STORIES<br />START WITH<br /><span>HELLO.</span></h2>
+            <p class="contact-intro">Tell me what you’re making, where you want it to go, and how I can help bring it to life.</p>
+            <div class="contact-direct-links">
+              <a class="button button-primary contact-button" href="mailto:vivekjoshi20jan2005@gmail.com">EMAIL VIVEK <span aria-hidden="true">↗</span></a>
+              <a class="contact-whatsapp" href="https://wa.me/919389877893?text=Hi%20Vivek%2C%20I%27d%20like%20to%20discuss%20a%20video%20project." target="_blank" rel="noopener noreferrer">WHATSAPP <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="contact-details">
+              <a class="contact-phone" href="tel:+919389877893">CALL <span>+91 93898 77893</span></a>
+              <p class="contact-small">DEHRADUN, UTTARAKHAND · INDIA</p>
+            </div>
+          </div>
+          <div class="contact-form-panel">
+            <p class="contact-form-kicker">START A PROJECT</p>
+            <h3>What are you<br />working on?</h3>
+            <form
+              class="contact-form"
+              action="https://formspree.io/f/REPLACE_WITH_FORM_ID"
+              method="POST"
+              data-contact-form
+            >
+              <div class="contact-form-fields">
+                <label class="contact-field">
+                  <span>Your name</span>
+                  <input type="text" name="name" autocomplete="name" placeholder="Name" required maxlength="100" />
+                </label>
+                <label class="contact-field">
+                  <span>Email address</span>
+                  <input type="email" name="email" autocomplete="email" placeholder="you@example.com" required maxlength="254" />
+                </label>
+                <label class="contact-field">
+                  <span>Project type</span>
+                  <select name="project_type" required>
+                    <option value="" selected disabled>Select a type</option>
+                    <option>Brand film</option>
+                    <option>Automotive</option>
+                    <option>Motion graphics</option>
+                    <option>Social content</option>
+                    <option>Other</option>
+                  </select>
+                </label>
+                <label class="contact-field">
+                  <span>Budget range</span>
+                  <select name="budget_range" required>
+                    <option value="" selected disabled>Select a range</option>
+                    <option>Under ₹15,000</option>
+                    <option>₹15,000–₹50,000</option>
+                    <option>₹50,000–₹1,50,000</option>
+                    <option>₹1,50,000+</option>
+                    <option>Let’s discuss</option>
+                  </select>
+                </label>
+                <label class="contact-field contact-field-wide">
+                  <span>A little about the project</span>
+                  <textarea name="message" rows="4" placeholder="The story, the timeline, or just the starting point…" required minlength="10" maxlength="4000"></textarea>
+                </label>
+              </div>
+              <div class="contact-honeypot" aria-hidden="true">
+                <label>Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+              </div>
+              <button class="contact-submit" type="submit">SEND PROJECT NOTE <span aria-hidden="true">↗</span></button>
+              <p class="contact-form-note">The form needs a Formspree form ID before it can deliver. Email and WhatsApp are ready now.</p>
+              <p class="contact-form-status" data-form-status role="status" aria-live="polite" hidden></p>
+            </form>
+            <div class="contact-form-success" data-form-success role="status" aria-live="polite" hidden>
+              <span aria-hidden="true">✓</span>
+              <h4>Message received.</h4>
+              <p>Thanks for reaching out. I’ll be in touch soon.</p>
+            </div>
           </div>
           <div class="contact-decoration" aria-hidden="true">✳</div>
         </div>

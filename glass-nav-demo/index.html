@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#021a22" />
+    <title>Floating Glass Navigation</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="demo-toolbar">
+      <a class="demo-mark" href="#home" aria-label="Glass navigation demo home">GLASS<span>/</span>FLOW</a>
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+        </svg>
+        <span>THEME</span>
+      </button>
+    </header>
+
+    <!-- Example destinations make each navigation link useful in this standalone demo. -->
+    <main>
+      <section class="demo-section section-home" id="home" aria-labelledby="home-title">
+        <p class="eyebrow">01 / FLOATING INTERFACE</p>
+        <h1 id="home-title">A little<br />more <span>fluid.</span></h1>
+        <p class="section-copy">A glass navigation study. Pick a destination below and watch the active lens flow into place.</p>
+        <a class="scroll-hint" href="#tasks">EXPLORE THE DEMO <span aria-hidden="true">↓</span></a>
+      </section>
+      <section class="demo-section section-tasks" id="tasks" aria-labelledby="tasks-title">
+        <p class="eyebrow">02 / TASKS</p>
+        <h2 id="tasks-title">Make room<br />for what’s next.</h2>
+        <p class="section-copy">A calm space for the small steps that move the bigger picture forward.</p>
+      </section>
+      <section class="demo-section section-calendar" id="calendar" aria-labelledby="calendar-title">
+        <p class="eyebrow">03 / CALENDAR</p>
+        <h2 id="calendar-title">Time, in<br />good shape.</h2>
+        <p class="section-copy">Keep your plans close and your attention on the moment you’re making.</p>
+      </section>
+      <section class="demo-section section-goals" id="goals" aria-labelledby="goals-title">
+        <p class="eyebrow">04 / GOALS</p>
+        <h2 id="goals-title">Follow the<br />feeling.</h2>
+        <p class="section-copy">Small intentions. Clear direction. A little momentum every day.</p>
+      </section>
+    </main>
+
+    <!-- Fixed glass navigation; set --nav-top and --nav-bottom in styles.css to move it. -->
+    <nav class="glass-nav" aria-label="Main navigation">
+      <span class="active-lens" aria-hidden="true"></span>
+      <a class="nav-link" href="#home" aria-label="Home" aria-current="page">
+        <svg class="nav-icon icon-home" viewBox="0 0 28 28" aria-hidden="true">
+          <path class="active-fill" d="m3.5 12.2 10.5-9 10.5 9v11.3h-7v-7.2h-7v7.2h-7z" />
+          <path d="m3.5 12.2 10.5-9 10.5 9M6.5 10v13.5h6v-7.2h7v7.2h5V10" />
+        </svg>
+        <span class="nav-label">Home</span>
+      </a>
+      <a class="nav-link" href="#tasks" aria-label="Tasks">
+        <svg class="nav-icon icon-tasks" viewBox="0 0 28 28" aria-hidden="true">
+          <circle class="active-fill" cx="14" cy="14" r="10.5" />
+          <path class="active-check" d="m8.6 14.2 3.5 3.5 7.4-7.5" />
+          <circle class="outline-shape" cx="14" cy="14" r="10.5" />
+          <path class="outline-shape" d="m8.6 14.2 3.5 3.5 7.4-7.5" />
+        </svg>
+        <span class="nav-label">Tasks</span>
+      </a>
+      <a class="nav-link" href="#calendar" aria-label="Calendar">
+        <svg class="nav-icon icon-calendar" viewBox="0 0 28 28" aria-hidden="true">
+          <rect class="active-fill" x="3.5" y="5.5" width="21" height="19" rx="3" />
+          <path class="calendar-active" d="M4 11h20M9 3.5v4m10-4v4" />
+          <path class="calendar-active" d="M8.5 15h.1m5.4 0h.1m5.4 0h.1M8.5 19h.1m5.4 0h.1m5.4 0h.1" />
+          <rect class="outline-shape" x="3.5" y="5.5" width="21" height="19" rx="3" />
+          <path class="outline-shape" d="M4 11h20M9 3.5v4m10-4v4M8.5 15h.1m5.4 0h.1m5.4 0h.1M8.5 19h.1m5.4 0h.1m5.4 0h.1" />
+        </svg>
+        <span class="nav-label">Calendar</span>
+      </a>
+      <a class="nav-link" href="#goals" aria-label="Goals">
+        <svg class="nav-icon icon-goals" viewBox="0 0 28 28" aria-hidden="true">
+          <circle class="active-fill" cx="14" cy="14" r="10.5" />
+          <circle class="target-active" cx="14" cy="14" r="6.1" />
+          <circle class="target-active" cx="14" cy="14" r="1.7" />
+          <circle class="outline-shape" cx="14" cy="14" r="10.5" />
+          <circle class="outline-shape" cx="14" cy="14" r="6.1" />
+          <circle class="outline-shape" cx="14" cy="14" r="1.7" />
+        </svg>
+        <span class="nav-label">Goals</span>
+      </a>
+    </nav>
+  </body>
+</html>

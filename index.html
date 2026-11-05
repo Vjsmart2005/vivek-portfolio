@@ -15,8 +15,10 @@
       href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20261105-theme-switch" />
-    <script src="script.js?v=20261105-theme-switch" defer></script>
+    <link rel="stylesheet" href="styles.css?v=home-reel-nav-20261105c" />
+    <link rel="stylesheet" href="halftone-footer.css" />
+    <script src="script.js?v=home-reel-nav-20261105c" defer></script>
+    <script src="halftone-footer.js" defer></script>
   </head>
   <body class="has-scroll-story">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -32,31 +34,6 @@
       <button class="intro-loader-skip" type="button">Skip intro <span aria-hidden="true">↗</span></button>
     </dialog>
     <div class="scroll-progress" aria-hidden="true"></div>
-    <header class="site-header">
-      <a class="wordmark" href="index.html" aria-label="Vivek Joshi, home"><span>V</span></a>
-      <button
-        class="menu-toggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="site-menu"
-        aria-label="Open full-screen menu"
-      >
-        <span class="menu-grid-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-        <span class="menu-toggle-label" aria-hidden="true">Menu</span>
-      </button>
-      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
-        <a href="work.html">Work</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a class="nav-contact" href="contact.html">Contact <span aria-hidden="true">↗</span></a>
-      </nav>
-      <button class="theme-switch" type="button" aria-label="Switch to the next color theme">
-        <span class="theme-switch-swatch" aria-hidden="true"></span>
-        <span class="theme-switch-label">THEME</span>
-        <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M16.5 8A6.7 6.7 0 0 0 4.3 5.3L2.8 7M3 3.4v3.8h3.8M3.5 12A6.7 6.7 0 0 0 15.7 14.7l1.5-1.7M17 16.6v-3.8h-3.8" /></svg>
-      </button>
-    </header>
-
     <dialog class="menu-dialog" id="site-menu" aria-label="Full-screen navigation">
       <div class="menu-dialog-inner">
         <div class="menu-dialog-top">
@@ -75,6 +52,25 @@
         </div>
       </div>
     </dialog>
+
+    <header class="site-header home-story-header" aria-hidden="true" inert>
+      <a class="wordmark" href="index.html" aria-label="Vivek Joshi, home"><span>V</span></a>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open full-screen menu">
+          <span class="menu-grid-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span class="menu-toggle-label" aria-hidden="true">Menu</span>
+        </button>
+        <a href="work.html">Work</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a class="nav-contact" href="contact.html">Contact <span aria-hidden="true">↗</span></a>
+      </nav>
+      <button class="theme-switch" type="button" aria-label="Switch to the next color theme">
+        <span class="theme-switch-swatch" aria-hidden="true"></span>
+        <span class="theme-switch-label">THEME</span>
+        <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M16.5 8A6.7 6.7 0 0 0 4.3 5.3L2.8 7M3 3.4v3.8h3.8M3.5 12A6.7 6.7 0 0 0 15.7 14.7l1.5-1.7M17 16.6v-3.8h-3.8" /></svg>
+      </button>
+    </header>
 
     <main id="main">
       <h1 class="screen-reader-only">Vivek Joshi — Creative Digital Designer and Video Editor</h1>
@@ -149,7 +145,7 @@
             <span class="home-project-name">VELONNA <i aria-hidden="true">↗</i></span>
           </a>
           <a class="home-project" href="work.html" aria-label="View motion graphics work">
-            <video muted loop playsinline preload="none" aria-hidden="true" data-project-preview><source data-src="assets/work/motion-graphics/my-health-journey.mp4" type="video/mp4" /></video>
+            <video muted loop playsinline preload="none" aria-hidden="true" data-project-preview><source data-src="https://github.com/Vjsmart2005/vivek-portfolio/releases/download/portfolio-media-v1/my-health-journey.mp4" type="video/mp4" /></video>
             <span class="home-project-name">MOTION GRAPHICS <i aria-hidden="true">↗</i></span>
           </a>
         </div>
