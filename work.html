@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="warm">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,9 +9,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=navbar-flow-20261105" />
+    <link rel="stylesheet" href="styles.css?v=scroll-performance-20261106" />
     <link rel="stylesheet" href="halftone-footer.css" />
-    <script src="script.js?v=20261105-theme-switch" defer></script>
+    <script src="script.js?v=scroll-performance-20261106" defer></script>
     <script src="halftone-footer.js" defer></script>
   </head>
   <body>
@@ -25,7 +25,6 @@
         </button>
         <a href="work.html" aria-current="page">Work</a><a href="about.html">About</a><a href="services.html">Services</a><a class="nav-contact" href="contact.html">Contact <span aria-hidden="true">↗</span></a>
       </nav>
-      <button class="theme-switch" type="button" aria-label="Switch to the next color theme"><span class="theme-switch-swatch" aria-hidden="true"></span><span class="theme-switch-label">THEME</span><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M16.5 8A6.7 6.7 0 0 0 4.3 5.3L2.8 7M3 3.4v3.8h3.8M3.5 12A6.7 6.7 0 0 0 15.7 14.7l1.5-1.7M17 16.6v-3.8h-3.8" /></svg></button>
     </header>
     <dialog class="menu-dialog" id="site-menu" aria-label="Full-screen navigation">
       <div class="menu-dialog-inner">
@@ -46,63 +45,63 @@
         <div class="project-grid">
           <article class="project-card project-featured" data-reveal>
             <button class="project-image js-play-reel" type="button" data-title="Kia Seltos — Launch film" data-video="assets/work/kia-seltos-launch.mp4" aria-label="Preview Kia Seltos launch film">
-              <video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/work/kia-seltos-launch.mp4" type="video/mp4" /></video>
+              <video autoplay muted loop playsinline preload="none" aria-hidden="true" data-project-preview><source data-src="assets/work/kia-seltos-launch.mp4" type="video/mp4" /></video>
               <span class="project-play" aria-hidden="true">▶ <span>View film</span></span><span class="project-index">01</span>
             </button>
             <div class="project-info"><span class="project-number">01</span><div><h2>Kia Seltos</h2><p>Event film · Seltos launch</p></div><span class="project-category">AUTOMOTIVE</span></div>
           </article>
           <article class="project-card" data-reveal>
             <button class="project-image js-play-reel" type="button" data-title="Kia — Case study" data-video="assets/work/kia-case-study.mp4" aria-label="Preview Kia case study film">
-              <video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/work/kia-case-study.mp4" type="video/mp4" /></video>
+              <video autoplay muted loop playsinline preload="none" aria-hidden="true" data-project-preview><source data-src="assets/work/kia-case-study.mp4" type="video/mp4" /></video>
               <span class="project-play" aria-hidden="true">▶ <span>View film</span></span><span class="project-index">02</span>
             </button>
             <div class="project-info"><span class="project-number">02</span><div><h2>Kia Case Study</h2><p>Brand film · Case study</p></div><span class="project-category">AUTOMOTIVE</span></div>
           </article>
           <article class="project-card" data-reveal>
             <button class="project-image js-play-reel" type="button" data-title="AI Visual — AI-generated film" data-video="assets/work/ai-visual.mp4" aria-label="Preview AI visual film">
-              <video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/work/ai-visual.mp4" type="video/mp4" /></video>
+              <video autoplay muted loop playsinline preload="none" aria-hidden="true" data-project-preview><source data-src="assets/work/ai-visual.mp4" type="video/mp4" /></video>
               <span class="project-play" aria-hidden="true">▶ <span>View film</span></span><span class="project-index">03</span>
             </button>
             <div class="project-info"><span class="project-number">03</span><div><h2>AI Visual</h2><p>AI-generated film · Motion edit</p></div><span class="project-category">AI / MOTION</span></div>
           </article>
           <article class="project-card" data-reveal>
             <button class="project-image js-play-reel" type="button" data-title="Tata AI Edit" data-video="assets/work/tata-ai-edit.mp4" aria-label="Preview Tata AI edit">
-              <video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/work/tata-ai-edit.mp4" type="video/mp4" /></video>
+              <video autoplay muted loop playsinline preload="none" aria-hidden="true" data-project-preview><source data-src="assets/work/tata-ai-edit.mp4" type="video/mp4" /></video>
               <span class="project-play" aria-hidden="true">▶ <span>View film</span></span><span class="project-index">04</span>
             </button>
             <div class="project-info"><span class="project-number">04</span><div><h2>Tata AI Edit</h2><p>AI-led brand edit</p></div><span class="project-category">AI / AUTOMOTIVE</span></div>
           </article>
           <article class="project-card" data-reveal>
             <button class="project-image js-play-reel" type="button" data-title="Air India Edit" data-video="assets/work/air-india-edit.mp4" aria-label="Preview Air India edit">
-              <video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/work/air-india-edit.mp4" type="video/mp4" /></video>
+              <video autoplay muted loop playsinline preload="none" aria-hidden="true" data-project-preview><source data-src="assets/work/air-india-edit.mp4" type="video/mp4" /></video>
               <span class="project-play" aria-hidden="true">▶ <span>View film</span></span><span class="project-index">05</span>
             </button>
             <div class="project-info"><span class="project-number">05</span><div><h2>Air India</h2><p>Brand edit · Video</p></div><span class="project-category">AVIATION</span></div>
           </article>
           <article class="project-card" data-reveal>
             <button class="project-image js-play-reel" type="button" data-title="LTPCT Edit" data-video="assets/work/ltpct-edit.mp4" aria-label="Preview LTPCT edit">
-              <video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/work/ltpct-edit.mp4" type="video/mp4" /></video>
+              <video autoplay muted loop playsinline preload="none" aria-hidden="true" data-project-preview><source data-src="assets/work/ltpct-edit.mp4" type="video/mp4" /></video>
               <span class="project-play" aria-hidden="true">▶ <span>View film</span></span><span class="project-index">06</span>
             </button>
             <div class="project-info"><span class="project-number">06</span><div><h2>LTPCT</h2><p>Video edit</p></div><span class="project-category">CAMPAIGN</span></div>
           </article>
           <article class="project-card" data-reveal>
             <button class="project-image js-play-reel" type="button" data-title="Showreel" data-video="assets/work/velonna-jewellery/showreel.mp4" aria-label="Preview showreel">
-              <video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/work/velonna-jewellery/showreel.mp4" type="video/mp4" /></video>
+              <video autoplay muted loop playsinline preload="none" aria-hidden="true" data-project-preview><source data-src="assets/work/velonna-jewellery/showreel.mp4" type="video/mp4" /></video>
               <span class="project-play" aria-hidden="true">▶ <span>View film</span></span><span class="project-index">07</span>
             </button>
             <div class="project-info"><span class="project-number">07</span><div><h2>Showreel</h2><p>Video edit · Showreel</p></div><span class="project-category">MOTION / EDIT</span></div>
           </article>
           <article class="project-card" data-reveal>
             <button class="project-image js-play-reel" type="button" data-title="Reel 1.1" data-video="assets/work/velonna-jewellery/reel-1-1.mp4" aria-label="Preview Reel 1.1">
-              <video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/work/velonna-jewellery/reel-1-1.mp4" type="video/mp4" /></video>
+              <video autoplay muted loop playsinline preload="none" aria-hidden="true" data-project-preview><source data-src="assets/work/velonna-jewellery/reel-1-1.mp4" type="video/mp4" /></video>
               <span class="project-play" aria-hidden="true">▶ <span>View film</span></span><span class="project-index">08</span>
             </button>
             <div class="project-info"><span class="project-number">08</span><div><h2>Reel 1.1</h2><p>Video edit · Reel</p></div><span class="project-category">MOTION / EDIT</span></div>
           </article>
           <article class="project-card" data-reveal>
             <button class="project-image js-play-reel" type="button" data-title="My Health Journey" data-video="https://github.com/Vjsmart2005/vivek-portfolio/releases/download/portfolio-media-v1/my-health-journey.mp4" aria-label="Preview My Health Journey motion graphics film">
-              <video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="https://github.com/Vjsmart2005/vivek-portfolio/releases/download/portfolio-media-v1/my-health-journey.mp4" type="video/mp4" /></video>
+              <video autoplay muted loop playsinline preload="none" aria-hidden="true" data-project-preview><source data-src="https://github.com/Vjsmart2005/vivek-portfolio/releases/download/portfolio-media-v1/my-health-journey.mp4" type="video/mp4" /></video>
               <span class="project-play" aria-hidden="true">▶ <span>View film</span></span><span class="project-index">09</span>
             </button>
             <div class="project-info"><span class="project-number">09</span><div><h2>My Health Journey</h2><p>Motion graphics · Video</p></div><span class="project-category">MOTION GRAPHICS</span></div>
