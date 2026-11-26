@@ -209,10 +209,6 @@ button:focus:not(:focus-visible) { outline: none; }
   html { scroll-padding-top: 72px; }
   .section-wrap { width: calc(100% - 40px); }
   .site-header { height: 68px; padding-inline: 20px; }
-  .menu-toggle { display: flex; width: 40px; height: 40px; flex-direction: column; align-items: center; justify-content: center; gap: 6px; border: 1px solid var(--line); border-radius: 50%; background: transparent; }
-  .menu-toggle span { width: 15px; height: 1px; background: var(--paper); transition: transform .2s; }
-  .menu-toggle[aria-expanded="true"] span:first-child { transform: translateY(3.5px) rotate(45deg); }
-  .menu-toggle[aria-expanded="true"] span:last-child { transform: translateY(-3.5px) rotate(-45deg); }
   .site-nav { position: absolute; top: 67px; right: 0; left: 0; display: none; align-items: stretch; gap: 0; padding: 10px 20px 20px; border-bottom: 1px solid var(--line); background: #141512; }
   .site-nav.is-open { display: flex; flex-direction: column; }
   .site-nav a { padding: 14px 2px; }
@@ -457,18 +453,14 @@ button:focus:not(:focus-visible) { outline: none; }
 }
 
 .menu-toggle {
-  display: inline-flex; align-items: center; gap: 10px; padding: 9px 0 9px 14px;
-  border: 0; background: transparent; cursor: pointer; color: var(--paper);
+  display: inline-grid; width: 40px; height: 40px; place-items: center; padding: 0;
+  border: 0; border-radius: 50%; background: transparent; cursor: pointer; color: var(--paper);
 }
-.menu-toggle > span { width: auto; height: auto; background: none; }
-.menu-toggle[aria-expanded="true"] .menu-grid-icon { transform: none; }
-.menu-grid-icon { display: grid; width: 20px; height: 20px; grid-template: repeat(2, 1fr) / repeat(2, 1fr); gap: 3px; }
-.menu-grid-icon i { display: block; background: var(--accent); transition: transform .25s cubic-bezier(.2,.7,.2,1); }
-.menu-toggle:hover .menu-grid-icon i:nth-child(1) { transform: translate(-2px, -2px); }
-.menu-toggle:hover .menu-grid-icon i:nth-child(2) { transform: translate(2px, -2px); }
-.menu-toggle:hover .menu-grid-icon i:nth-child(3) { transform: translate(-2px, 2px); }
-.menu-toggle:hover .menu-grid-icon i:nth-child(4) { transform: translate(2px, 2px); }
-.menu-toggle-label { font: 500 10px var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
+.menu-dots-icon { display: flex; width: 4px; height: 16px; flex-direction: column; align-items: center; justify-content: space-between; }
+.menu-dots-icon i { width: 3px; height: 3px; border-radius: 50%; background: var(--accent); transition: transform .2s ease, background .2s ease; }
+.menu-toggle:hover .menu-dots-icon i { background: var(--paper); }
+.menu-toggle:hover .menu-dots-icon i:first-child { transform: translateX(-1px); }
+.menu-toggle:hover .menu-dots-icon i:last-child { transform: translateX(1px); }
 .menu-dialog {
   position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none;
   margin: 0; padding: 35px max(36px, calc((100vw - 1320px) / 2)) 32px; overflow: auto;
@@ -517,11 +509,7 @@ button:focus:not(:focus-visible) { outline: none; }
   from { opacity: 0; scale: .94; }
   to { opacity: 1; scale: 1; }
 }
-@media (max-width: 900px) {
-  .menu-toggle { padding-left: 10px; }
-}
 @media (max-width: 640px) {
-  .menu-toggle { gap: 8px; padding: 8px 0 8px 10px; border: 0; background: transparent; }
   .menu-dialog { padding: 22px 20px 24px; }
   .menu-dialog-top > span, .menu-dialog-bottom > span, .menu-dialog-bottom > a { font-size: 8px; }
   .menu-dialog-links { margin-block: 40px; }
@@ -1385,21 +1373,20 @@ html.is-intro-loading, html.is-intro-loading body { overflow: hidden; }
   position: relative;
   z-index: 1;
   display: flex;
+  justify-self: end;
   min-width: 0;
   min-height: 38px;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 0 8px;
+  width: 40px;
+  height: 40px;
+  gap: 0;
+  padding: 0;
   border: 0;
   border-radius: 999px;
   background: transparent;
   color: rgba(242,240,233,.76);
 }
-.site-header .site-nav > .menu-toggle > span { width: auto; height: auto; background: none; }
-.site-header .site-nav .menu-grid-icon { display: grid; width: 14px; height: 14px; grid-template: repeat(2, 1fr) / repeat(2, 1fr); gap: 2px; }
-.site-header .site-nav .menu-grid-icon i { display: block; background: var(--accent); }
-.site-header .site-nav .menu-toggle-label { font: 500 9px var(--font-mono); letter-spacing: .07em; text-transform: uppercase; }
 .site-header .site-nav > .menu-toggle:hover { color: var(--paper); }
 .site-header .site-nav > .menu-toggle:active { transform: scale(.97); }
 .site-header .site-nav > a:hover,
@@ -1415,29 +1402,32 @@ html.is-intro-loading, html.is-intro-loading body { overflow: hidden; }
   .site-header .site-nav { width: min(400px, calc(100vw - 220px)); }
   .site-header .site-nav > a,
   .site-header .site-nav > .nav-contact { padding-inline: 8px; font-size: 9px; }
-  .site-header .site-nav > .menu-toggle { gap: 5px; padding-inline: 5px; }
 }
 @media (max-width: 640px) {
   .site-header .site-nav {
-    position: relative;
-    inset: auto;
+    position: absolute;
+    top: 50%;
+    right: max(12px, env(safe-area-inset-right));
+    left: auto;
     display: grid;
-    width: max-content;
+    width: 44px;
     min-height: 44px;
     grid-template-columns: auto;
     grid-auto-flow: row;
     grid-auto-columns: auto;
     align-items: center;
     gap: 0;
-    padding: 3px;
-    border-radius: 999px;
+    padding: 0;
+    overflow: visible;
+    border-radius: 50%;
     box-shadow: 0 8px 24px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.18);
+    transform: translateY(-50%);
   }
   :root[data-theme] .site-header .site-nav { background: color-mix(in srgb, var(--ink) 94%, transparent); }
   .site-header .site-nav::before { display: none; }
   .site-header .site-nav > a,
   .site-header .site-nav > .nav-contact { display: none; }
-  .site-header .site-nav > .menu-toggle { min-height: 36px; gap: 8px; padding-inline: 10px; }
+  .site-header .site-nav > .menu-toggle { width: 44px; height: 44px; min-height: 44px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .site-header .site-nav::before { transition: none; }
