@@ -64,6 +64,7 @@
           <h2>Get in touch</h2>
           <ul>
             <li><a href="mailto:vivekjoshi20jan2005@gmail.com">Email ↗</a></li>
+            <li><a href="https://www.instagram.com/vivekjoshi.official" target="_blank" rel="noopener noreferrer">Instagram ↗</a></li>
             <li><a href="tel:+919389877893">Call · +91 93898 77893</a></li>
           </ul>
         </nav>
