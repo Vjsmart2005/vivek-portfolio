@@ -16,6 +16,7 @@ const layoutButtons = document.querySelectorAll("[data-layout]");
 const progressLine = document.querySelector(".scroll-meter-line i");
 const progressValue = document.querySelector(".scroll-meter-value");
 const year = document.querySelector("#year");
+const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 
 if (year) year.textContent = new Date().getFullYear();
 
@@ -25,46 +26,26 @@ let Flip = gsap?.plugins?.Flip || window.Flip;
 let lenis;
 let viewportFrame = 0;
 let skewControls = [];
-const visibleVideos = new Set();
 const loadPreview = (video) => {
   if (video.dataset.loaded) return;
   video.dataset.loaded = "true";
-  video.poster = video.dataset.poster;
   video.src = video.dataset.src;
   video.load();
 };
-const previewObserver = "IntersectionObserver" in window
-  ? new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      const video = entry.target;
-      if (entry.isIntersecting) {
-        visibleVideos.add(video);
-        loadPreview(video);
-        if (!document.hidden) video.play().catch(() => {});
-      } else {
-        visibleVideos.delete(video);
-        video.pause();
-      }
-    });
-  }, { threshold: 0.01 })
-  : null;
+videos.forEach((video) => {
+  const item = video.closest("[data-gallery-item]");
+  if (!item) return;
+
+  item.addEventListener("pointerenter", () => {
+    if (finePointer.matches && !reducedMotion.matches && !document.hidden) {
+      loadPreview(video);
+      video.play().catch(() => {});
+    }
+  });
+  item.addEventListener("pointerleave", () => video.pause());
+});
 
 const updateViewportUI = () => {
-  if (!previewObserver) {
-    videos.forEach((video) => {
-      const bounds = video.getBoundingClientRect();
-      const inView = bounds.bottom > 0 && bounds.top < window.innerHeight;
-      if (inView) {
-        visibleVideos.add(video);
-        loadPreview(video);
-        if (!document.hidden) video.play().catch(() => {});
-      } else {
-        visibleVideos.delete(video);
-        video.pause();
-      }
-    });
-  }
-
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
   const scroll = lenis ? lenis.scroll : window.scrollY;
   const progress = maxScroll > 0 ? Math.min(1, Math.max(0, scroll / maxScroll)) : 0;
@@ -95,7 +76,6 @@ const scheduleViewportUI = () => {
 
 window.addEventListener("scroll", scheduleViewportUI, { passive: true });
 window.addEventListener("resize", scheduleViewportUI);
-if (previewObserver) videos.forEach((video) => previewObserver.observe(video));
 
 if (gsap && ScrollTrigger) {
   gsap.registerPlugin(ScrollTrigger);
@@ -179,7 +159,6 @@ document.addEventListener("visibilitychange", () => {
   }
   lenis?.start();
   gsap?.ticker.wake();
-  visibleVideos.forEach((video) => video.play().catch(() => {}));
   scheduleViewportUI();
 });
 

@@ -186,67 +186,40 @@ storyDepth?.addEventListener("pointerleave", () => {
 });
 
 finePointer.addEventListener("change", applyEffectPreferences);
-const syncProjectPreview = (video, isVisible) => {
-  if (isVisible) {
-    const source = video.querySelector("source[data-src]");
-    if (source && !source.hasAttribute("src")) {
-      source.src = source.dataset.src;
-      video.load();
-    }
-  }
-  if (!isVisible || prefersReducedMotion.matches || !effectPreferences.motion) {
-    video.pause();
-    return;
-  }
-  video.play().catch((error) => console.warn("Could not play a featured project preview.", error));
+const loadPreviewVideo = (video) => {
+  const source = video.querySelector("source[data-src]");
+  if (!source || source.hasAttribute("src")) return;
+  source.src = source.dataset.src;
+  video.load();
 };
 
-prefersReducedMotion.addEventListener("change", applyEffectPreferences);
-prefersReducedMotion.addEventListener("change", () => {
-  projectPreviewVideos.forEach((video) => {
-    const bounds = video.getBoundingClientRect();
-    syncProjectPreview(video, bounds.bottom >= -160 && bounds.top <= window.innerHeight + 160);
+const playPreviewVideo = (video) => {
+  if (prefersReducedMotion.matches || !effectPreferences.motion) return;
+  loadPreviewVideo(video);
+  video.play().catch((error) => console.warn("Could not play a video preview.", error));
+};
+
+const bindHoverPreview = (video) => {
+  const target = video.closest("a, button") ?? video.parentElement;
+  if (!target) return;
+
+  target.addEventListener("pointerenter", () => {
+    if (finePointer.matches) playPreviewVideo(video);
   });
-});
-
-const playAmbientTexture = (video) => {
-  video.play().catch((error) => console.warn("Could not play an ambient texture.", error));
+  target.addEventListener("pointerleave", () => {
+    if (!target.contains(document.activeElement)) video.pause();
+  });
+  target.addEventListener("focusin", () => playPreviewVideo(video));
+  target.addEventListener("focusout", (event) => {
+    if (!target.contains(event.relatedTarget) && !target.matches(":hover")) video.pause();
+  });
 };
 
-if (projectPreviewVideos.length && "IntersectionObserver" in window) {
-  const projectPreviewObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => syncProjectPreview(entry.target, entry.isIntersecting));
-  }, { rootMargin: "160px" });
-  projectPreviewVideos.forEach((video) => projectPreviewObserver.observe(video));
-} else {
-  projectPreviewVideos.forEach((video) => syncProjectPreview(video, true));
-}
-
-if (ambientTextureVideos.length && "IntersectionObserver" in window) {
-  const textureObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (prefersReducedMotion.matches || !effectPreferences.motion || !entry.isIntersecting) {
-        entry.target.pause();
-      } else {
-        playAmbientTexture(entry.target);
-      }
-    });
-  }, { rootMargin: "160px" });
-
-  ambientTextureVideos.forEach((video) => textureObserver.observe(video));
-} else if (!prefersReducedMotion.matches && effectPreferences.motion) {
-  ambientTextureVideos.forEach(playAmbientTexture);
-}
-
+projectPreviewVideos.forEach(bindHoverPreview);
+ambientTextureVideos.forEach(bindHoverPreview);
 prefersReducedMotion.addEventListener("change", (event) => {
-  ambientTextureVideos.forEach((video) => {
-    if (event.matches) {
-      video.pause();
-    } else {
-      const bounds = video.getBoundingClientRect();
-      if (bounds.bottom >= -160 && bounds.top <= window.innerHeight + 160) playAmbientTexture(video);
-    }
-  });
+  if (!event.matches) return;
+  [...projectPreviewVideos, ...ambientTextureVideos].forEach((video) => video.pause());
 });
 
 if (prefersReducedMotion.matches) storyOpeningVideo?.pause();
@@ -339,13 +312,7 @@ const updateScrollStory = () => {
     photo.style.setProperty("--story-photo-scale", String(0.72 + phase * 0.28));
     photo.style.setProperty("--story-photo-opacity", String(easeProgress(progress, 0.42 + index * 0.015, 0.62 + index * 0.015)));
   });
-  if (storyOpeningVideo) {
-    if (progress > 0.98) {
-      storyOpeningVideo.pause();
-    } else if (storyOpeningVideo.paused) {
-      storyOpeningVideo.play().catch((error) => console.warn("Could not resume the opening showreel.", error));
-    }
-  }
+  if (progress > 0.98) storyOpeningVideo?.pause();
 
   if (storyProgressBar) storyProgressBar.parentElement.style.setProperty("--story-progress", String(progress));
 };
