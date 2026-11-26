@@ -192,8 +192,7 @@ body.is-lenis { overflow: clip; }
   content: "";
   pointer-events: none;
 }
-.visual-index,
-.visual-corner {
+.visual-index {
   position: absolute;
   z-index: 2;
   color: rgba(255,255,255,.82);
@@ -202,7 +201,6 @@ body.is-lenis { overflow: clip; }
   pointer-events: none;
 }
 .visual-index { top: 17px; left: 17px; }
-.visual-corner { right: 17px; bottom: 17px; opacity: .7; }
 .item-meta { display: flex; align-items: end; justify-content: space-between; gap: 18px; padding-top: 15px; }
 .item-title {
   min-width: 0;
@@ -293,7 +291,6 @@ body.is-lenis { overflow: clip; }
   .item-tag,
   .gallery--list .item-tag { font-size: 7px; }
   .visual-index { top: 12px; left: 12px; }
-  .visual-corner { right: 12px; bottom: 12px; }
   .experiments-cta { padding-block: 85px 100px; }
   .experiments-cta > .eyebrow { margin-bottom: 36px; }
   .experiments-cta > a { font-size: clamp(65px, 18vw, 108px); }

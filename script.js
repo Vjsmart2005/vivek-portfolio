@@ -10,8 +10,6 @@ const scrollStory = document.querySelector("[data-scroll-story]");
 const homeStoryHeader = document.querySelector(".home-story-header");
 const storyOpening = scrollStory?.querySelector("[data-story-opening]");
 const storyOpeningVideo = storyOpening?.querySelector("video");
-const storyDepth = scrollStory?.querySelector("[data-story-depth]");
-const storyPhotos = storyDepth?.querySelectorAll("[data-story-photo]") ?? [];
 const storyScrollCue = scrollStory?.querySelector(".story-scroll-cue");
 const storyProgressBar = scrollStory?.querySelector("[data-story-progress-bar]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -88,6 +86,9 @@ if (introLoader instanceof HTMLDialogElement) {
     if (introLoader.open) introLoader.close();
     introLoader.remove();
     document.documentElement.classList.remove("is-intro-loading");
+    if (!prefersReducedMotion.matches && effectPreferences.motion && storyOpeningVideo) {
+      storyOpeningVideo.play().catch((error) => console.warn("Could not start the opening showreel.", error));
+    }
   };
 
   const updateIntroProgress = (timestamp) => {
@@ -135,10 +136,6 @@ const applyEffectPreferences = () => {
       target.style.removeProperty("--pointer-tilt-y");
     }
   });
-  storyPhotos.forEach((photo) => {
-    photo.style.removeProperty("--pointer-pitch");
-    photo.style.removeProperty("--pointer-yaw");
-  });
 };
 
 applyEffectPreferences();
@@ -167,22 +164,6 @@ document.addEventListener("pointermove", (event) => {
   if (!canUsePointerEffects()) return;
   pointerLight.style.setProperty("--pointer-x", `${event.clientX}px`);
   pointerLight.style.setProperty("--pointer-y", `${event.clientY}px`);
-
-  if (!storyDepth || storyDepth.classList.contains("is-disabled")) return;
-  const bounds = storyDepth.getBoundingClientRect();
-  const offsetX = (event.clientX - bounds.left) / bounds.width - 0.5;
-  const offsetY = (event.clientY - bounds.top) / bounds.height - 0.5;
-  storyPhotos.forEach((photo) => {
-    photo.style.setProperty("--pointer-pitch", `${(-offsetY * 5).toFixed(2)}deg`);
-    photo.style.setProperty("--pointer-yaw", `${(offsetX * 7).toFixed(2)}deg`);
-  });
-});
-
-storyDepth?.addEventListener("pointerleave", () => {
-  storyPhotos.forEach((photo) => {
-    photo.style.removeProperty("--pointer-pitch");
-    photo.style.removeProperty("--pointer-yaw");
-  });
 });
 
 finePointer.addEventListener("change", applyEffectPreferences);
@@ -279,39 +260,14 @@ const updateScrollStory = () => {
     storyOpening.style.opacity = "1";
     storyOpening.style.visibility = "visible";
     storyOpening.style.setProperty("--opening-scale", "1");
-    storyDepth?.classList.add("is-disabled");
-    storyPhotos.forEach((photo) => photo.removeAttribute("style"));
     return;
   }
 
-  storyDepth?.classList.remove("is-disabled");
   const openingOpacity = 1 - easeProgress(progress, 0.64, 0.98);
 
   storyOpening.style.opacity = String(openingOpacity);
   storyOpening.style.visibility = openingOpacity > 0.01 ? "visible" : "hidden";
   storyOpening.style.setProperty("--opening-scale", String(1 + progress * 0.22));
-  storyPhotos.forEach((photo, index) => {
-    const phase = easeProgress(progress, 0.4 + index * 0.025, 0.84 + index * 0.025);
-    const data = photo.dataset;
-    const startX = Number(data.startX);
-    const endX = Number(data.endX);
-    const startY = Number(data.startY);
-    const endY = Number(data.endY);
-    const startRotate = Number(data.startRotate);
-    const endRotate = Number(data.endRotate);
-    const startYaw = Number(data.startYaw);
-    const endYaw = Number(data.endYaw);
-    const interpolate = (start, end) => start + (end - start) * phase;
-
-    photo.style.setProperty("--story-photo-x", `${interpolate(startX, endX)}vw`);
-    photo.style.setProperty("--story-photo-y", `${interpolate(startY, endY)}vh`);
-    photo.style.setProperty("--story-photo-z", `${-180 + phase * 150 + index * 9}px`);
-    photo.style.setProperty("--story-photo-pitch", `${(1 - phase) * (index % 2 ? -12 : 12)}deg`);
-    photo.style.setProperty("--story-photo-yaw", `${interpolate(startYaw, endYaw)}deg`);
-    photo.style.setProperty("--story-photo-roll", `${interpolate(startRotate, endRotate)}deg`);
-    photo.style.setProperty("--story-photo-scale", String(0.72 + phase * 0.28));
-    photo.style.setProperty("--story-photo-opacity", String(easeProgress(progress, 0.42 + index * 0.015, 0.62 + index * 0.015)));
-  });
   if (progress > 0.98) storyOpeningVideo?.pause();
 
   if (storyProgressBar) storyProgressBar.parentElement.style.setProperty("--story-progress", String(progress));
