@@ -244,21 +244,24 @@ const updateScrollStory = () => {
   const scrollDistance = Math.max(1, scrollStory.offsetHeight - scrollStory.querySelector(".story-pin").offsetHeight);
   const progress = clampProgress((window.scrollY - storyStart) / scrollDistance);
   document.body.classList.toggle("story-entered", progress > 0.01);
+  document.body.classList.toggle("story-nav-visible", progress >= 0.22);
   updateStoryScrollCue();
   if (!storyOpening) return;
   if (prefersReducedMotion.matches || !effectPreferences.motion) {
     storyOpening.style.opacity = "1";
     storyOpening.style.visibility = "visible";
     storyOpening.style.setProperty("--opening-scale", "1");
+    storyOpeningVideo?.style.removeProperty("--opening-y");
     return;
   }
 
-  const openingOpacity = 1 - easeProgress(progress, 0.64, 0.98);
+  const openingOpacity = 1 - easeProgress(progress, 0.04, 0.22);
 
   storyOpening.style.opacity = String(openingOpacity);
   storyOpening.style.visibility = openingOpacity > 0.01 ? "visible" : "hidden";
   storyOpening.style.setProperty("--opening-scale", String(1 + progress * 0.22));
-  if (progress > 0.98) storyOpeningVideo?.pause();
+  storyOpeningVideo?.style.setProperty("--opening-y", `${-progress * 24}vh`);
+  if (progress > 0.22) storyOpeningVideo?.pause();
 
   if (storyProgressBar) storyProgressBar.parentElement.style.setProperty("--story-progress", String(progress));
 };
