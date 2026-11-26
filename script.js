@@ -265,9 +265,9 @@ const updateScrollStory = () => {
   const progress = clampProgress((window.scrollY - storyStart) / scrollDistance);
   document.body.classList.toggle("story-entered", progress > 0.01);
   const reducedStoryMotion = prefersReducedMotion.matches || !effectPreferences.motion;
-  const showHomeNav = reducedStoryMotion
+  const showHomeNav = document.body.classList.contains("wowww-home") || (reducedStoryMotion
     ? window.scrollY >= storyStart + scrollStory.offsetHeight
-    : progress >= 0.98;
+    : progress >= 0.98);
   document.body.classList.toggle("story-nav-visible", showHomeNav);
   if (homeStoryHeader) {
     homeStoryHeader.inert = !showHomeNav;

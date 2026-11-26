@@ -15,24 +15,13 @@
       href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=mobile-fit-20261127" />
+    <link rel="stylesheet" href="styles.css?v=wowww-inspired-20261127" />
     <link rel="stylesheet" href="halftone-footer.css" />
-    <script src="script.js?v=hover-preview-20261127" defer></script>
+    <script src="script.js?v=wowww-home-20261127" defer></script>
     <script src="halftone-footer.js?v=contact-links-20261127" defer></script>
   </head>
-  <body class="has-scroll-story">
+  <body class="has-scroll-story wowww-home">
     <a class="skip-link" href="#main">Skip to content</a>
-    <dialog class="intro-loader" id="intro-loader" aria-label="Portfolio introduction">
-      <div class="intro-loader-content">
-        <span class="intro-loader-mark" aria-hidden="true">V</span>
-        <p class="intro-loader-name">VIVEK JOSHI <span>·</span> VIDEO EDITOR</p>
-        <p class="intro-loader-status">A MOMENT, BEFORE THE FIRST FRAME <span class="intro-loader-percent">00%</span></p>
-        <div class="intro-loader-track" role="progressbar" aria-label="Loading portfolio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-          <span class="intro-loader-fill"></span>
-        </div>
-      </div>
-      <button class="intro-loader-skip" type="button">Skip intro <span aria-hidden="true">↗</span></button>
-    </dialog>
     <div class="scroll-progress" aria-hidden="true"></div>
     <dialog class="menu-dialog" id="site-menu" aria-label="Full-screen navigation">
       <div class="menu-dialog-inner">
@@ -53,7 +42,7 @@
       </div>
     </dialog>
 
-    <header class="site-header home-story-header" aria-hidden="true" inert>
+    <header class="site-header home-story-header">
       <a class="wordmark" href="index.html" aria-label="Vivek Joshi, home"><span>V</span></a>
       <nav class="site-nav" id="site-nav" aria-label="Main navigation">
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open full-screen menu">
@@ -97,6 +86,15 @@
             <video class="story-opening-video" muted loop playsinline preload="none" poster="assets/frames-camera-on-set.jpg" aria-hidden="true" data-project-preview disablepictureinpicture disableremoteplayback>
               <source data-src="assets/vivek-showreel-720p.mp4" type="video/mp4" />
             </video>
+            <div class="hero-emblem" aria-hidden="true">
+              <span class="hero-emblem-depth">VJ</span>
+              <span class="hero-emblem-face">VJ</span>
+            </div>
+            <div class="hero-opening-copy">
+              <p>INDEPENDENT VIDEO EDITOR <span>·</span> DEHRADUN, INDIA</p>
+              <h2>FILMS THAT <span>FEEL.</span></h2>
+            </div>
+            <span class="hero-opening-index" aria-hidden="true">01 — 04</span>
           </div>
           <a class="story-scroll-cue" href="#home-work" aria-label="Scroll down to selected edits">
             <span>SCROLL DOWN</span>
@@ -115,27 +113,27 @@
           </div>
         </div>
         <div class="home-project-grid">
-          <a class="home-project home-project-wide" href="work.html" aria-label="View the Kia Seltos launch film">
+          <a class="home-project home-project-wide" data-project-label="BRAND FILM · AUTOMOTIVE" href="work.html" aria-label="View the Kia Seltos launch film">
             <video muted loop playsinline preload="none" poster="assets/frames-camera-on-set.jpg" aria-hidden="true" data-project-preview><source data-src="assets/work/kia-seltos-launch.mp4" type="video/mp4" /></video>
             <span class="home-project-name">KIA <i aria-hidden="true">↗</i></span>
           </a>
-          <a class="home-project" href="work.html" aria-label="View the AI visual edit">
+          <a class="home-project" data-project-label="AI VISUAL EXPERIMENT" href="work.html" aria-label="View the AI visual edit">
             <video muted loop playsinline preload="none" poster="assets/frames-costume-study.jpg" aria-hidden="true" data-project-preview><source data-src="assets/work/ai-visual.mp4" type="video/mp4" /></video>
             <span class="home-project-name">AI <i aria-hidden="true">↗</i></span>
           </a>
-          <a class="home-project" href="work.html" aria-label="View the Tata AI edit">
+          <a class="home-project" data-project-label="CAMPAIGN EDIT" href="work.html" aria-label="View the Tata AI edit">
             <video muted loop playsinline preload="none" poster="assets/frames-sunset-tracks.jpg" aria-hidden="true" data-project-preview><source data-src="assets/work/tata-ai-edit.mp4" type="video/mp4" /></video>
             <span class="home-project-name">TATA <i aria-hidden="true">↗</i></span>
           </a>
-          <a class="home-project" href="work.html" aria-label="View the Air India edit">
+          <a class="home-project" data-project-label="BRAND CAMPAIGN" href="work.html" aria-label="View the Air India edit">
             <video muted loop playsinline preload="none" poster="assets/frames-rural-portrait.jpg" aria-hidden="true" data-project-preview><source data-src="assets/work/air-india-edit.mp4" type="video/mp4" /></video>
             <span class="home-project-name">AIR INDIA <i aria-hidden="true">↗</i></span>
           </a>
-          <a class="home-project" href="work.html" aria-label="View Velonna Jewellery films">
+          <a class="home-project" data-project-label="JEWELLERY FILM" href="work.html" aria-label="View Velonna Jewellery films">
             <video muted loop playsinline preload="none" poster="assets/frames-monitor-on-set.jpg" aria-hidden="true" data-project-preview><source data-src="assets/work/velonna-jewellery/showreel.mp4" type="video/mp4" /></video>
             <span class="home-project-name">VELONNA <i aria-hidden="true">↗</i></span>
           </a>
-          <a class="home-project" href="work.html" aria-label="View motion graphics work">
+          <a class="home-project" data-project-label="MOTION GRAPHICS" href="work.html" aria-label="View motion graphics work">
             <video muted loop playsinline preload="none" poster="assets/frames-documentary-farmer.jpg" aria-hidden="true" data-project-preview><source data-src="https://github.com/Vjsmart2005/vivek-portfolio/releases/download/portfolio-media-v1/my-health-journey.mp4" type="video/mp4" /></video>
             <span class="home-project-name">MOTION GRAPHICS <i aria-hidden="true">↗</i></span>
           </a>
