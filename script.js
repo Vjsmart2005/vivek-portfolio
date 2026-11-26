@@ -7,7 +7,6 @@ const reelVideo = reelDialog?.querySelector("video");
 const introLoader = document.querySelector("#intro-loader");
 const scrollProgress = document.querySelector(".scroll-progress");
 const scrollStory = document.querySelector("[data-scroll-story]");
-const homeStoryHeader = document.querySelector(".home-story-header");
 const storyOpening = scrollStory?.querySelector("[data-story-opening]");
 const storyOpeningVideo = storyOpening?.querySelector("video");
 const storyScrollCue = scrollStory?.querySelector(".story-scroll-cue");
@@ -65,6 +64,9 @@ const effectPreferences = {
   grain: true,
   motion: !prefersReducedMotion.matches,
 };
+if (!prefersReducedMotion.matches && storyOpeningVideo) {
+  storyOpeningVideo.play().catch((error) => console.warn("Could not start the opening showreel.", error));
+}
 const canUsePointerEffects = () => finePointer.matches && !prefersReducedMotion.matches && effectPreferences.motion;
 
 if (introLoader instanceof HTMLDialogElement) {
@@ -86,9 +88,6 @@ if (introLoader instanceof HTMLDialogElement) {
     if (introLoader.open) introLoader.close();
     introLoader.remove();
     document.documentElement.classList.remove("is-intro-loading");
-    if (!prefersReducedMotion.matches && effectPreferences.motion && storyOpeningVideo) {
-      storyOpeningVideo.play().catch((error) => console.warn("Could not start the opening showreel.", error));
-    }
   };
 
   const updateIntroProgress = (timestamp) => {
@@ -245,15 +244,6 @@ const updateScrollStory = () => {
   const scrollDistance = Math.max(1, scrollStory.offsetHeight - scrollStory.querySelector(".story-pin").offsetHeight);
   const progress = clampProgress((window.scrollY - storyStart) / scrollDistance);
   document.body.classList.toggle("story-entered", progress > 0.01);
-  const reducedStoryMotion = prefersReducedMotion.matches || !effectPreferences.motion;
-  const showHomeNav = reducedStoryMotion
-    ? window.scrollY >= storyStart + scrollStory.offsetHeight
-    : progress >= 0.98;
-  document.body.classList.toggle("story-nav-visible", showHomeNav);
-  if (homeStoryHeader) {
-    homeStoryHeader.inert = !showHomeNav;
-    homeStoryHeader.toggleAttribute("aria-hidden", !showHomeNav);
-  }
   updateStoryScrollCue();
   if (!storyOpening) return;
   if (prefersReducedMotion.matches || !effectPreferences.motion) {
